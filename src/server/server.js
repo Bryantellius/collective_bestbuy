@@ -10,7 +10,7 @@ app.use(morgan("dev"));
 
 app.use(express.static("public"));
 
-app.use("/api", apiRouter);
+app.use("/api/v1", apiRouter);
 
 app.use((req, res, next) => {
   try {
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.log(err.message);
-  res.status(500).json({ msg: "Something went wrong :(" });
+  res.status(500).json({error: err.message, msg: "Something went wrong :(" });
 });
 
 app.listen(config.port, () =>

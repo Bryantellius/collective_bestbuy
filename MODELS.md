@@ -6,7 +6,7 @@
 
 #### DB Function Names
 
-- EX: getOne(tableName, id) or getAll(tableName, id)
+- EX: getOne(tableName, id) or getAll(tableName)
 
 #### Employee Object
 
