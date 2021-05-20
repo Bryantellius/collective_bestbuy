@@ -6,7 +6,7 @@ import salesRoutes from "./salesRoutes";
 const router = express.Router();
 
 router.get("/test", (req, res, next) => {
-  res.json({ msg: "Hello World!" });
+  res.json({ msg: "Hello World" });
 });
 
 router.use("/employees", employeeRoutes );

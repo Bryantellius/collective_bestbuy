@@ -11,8 +11,21 @@ const Sales = () => {
 
   return (
     <main className="container">
-      <h1>{test}</h1>
-      
+      <div className="homePage"> 
+      <h1>Sales</h1>
+      </div>
+
+
+<div className="salesSearch">
+        <h5>Something Sales</h5>
+      <input type="text" name="salesInput" id="salesInput" />
+      <input type="submit" value="Submit" />
+   
+</div>
+
+<div className="salesBody">
+    {test}
+</div>
     </main>
   );
 };
