@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Home = () => {
   const [test, setTest] = React.useState("");
 
@@ -11,7 +12,18 @@ const Home = () => {
 
   return (
     <main className="container">
-      <h1>{test}</h1>
+        
+        <div className= "homePage">
+
+        <div className="title">
+        <h1>Best Buy</h1>
+        <h5 className="tagLine">"We're still a thing!</h5>
+      </div>
+
+        </div>
+        
+      
+
     </main>
   );
 };

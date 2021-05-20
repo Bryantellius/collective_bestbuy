@@ -28,3 +28,27 @@ html {
   
   
   }
+
+  .title {
+    
+    display:flex;
+    justify-content: center;
+    flex-direction: column
+    
+  }
+
+  .homePage {
+
+    display:flex;
+    justify-content: center;
+
+  }
+
+  .tagLine {
+    font-size: 20px;
+  }
+
+  .salesBody {
+display:flex;
+
+  }
