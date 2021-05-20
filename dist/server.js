@@ -20,13 +20,63 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/server/db/models/index.js":
+/*!***************************************!*\
+  !*** ./src/server/db/models/index.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var mysql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mysql */ \"mysql\");\n/* harmony import */ var mysql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mysql__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../config */ \"./src/server/config/index.js\");\n\n\nconst Connection = mysql__WEBPACK_IMPORTED_MODULE_0___default().createPool(_config__WEBPACK_IMPORTED_MODULE_1__.default.mysql);\n\nconst Query = (query, values) => {\n  return new Promise((resolve, reject) => {\n    Connection.query(query, values, (err, results) => {\n      if (err) reject(err);\n      resolve(results);\n    });\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Query);\n\n//# sourceURL=webpack://fullstack_starter/./src/server/db/models/index.js?");
+
+/***/ }),
+
+/***/ "./src/server/db/queries/get.js":
+/*!**************************************!*\
+  !*** ./src/server/db/queries/get.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getAll\": () => (/* binding */ getAll),\n/* harmony export */   \"getOne\": () => (/* binding */ getOne)\n/* harmony export */ });\n/* harmony import */ var _models__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models */ \"./src/server/db/models/index.js\");\n\n\nconst getAll = async table => {\n  return (0,_models__WEBPACK_IMPORTED_MODULE_0__.default)(\"SELECT * FROM \" + table);\n};\n\nconst getOne = async (table, id) => {\n  const idCol = table.slice(0, table.length - 1);\n  return (0,_models__WEBPACK_IMPORTED_MODULE_0__.default)(`SELECT * FROM ${table} WHERE ${idCol}ID = ?`, [id]);\n};\n\n\n\n//# sourceURL=webpack://fullstack_starter/./src/server/db/queries/get.js?");
+
+/***/ }),
+
+/***/ "./src/server/routes/employeesRoutes.js":
+/*!**********************************************!*\
+  !*** ./src/server/routes/employeesRoutes.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _db_queries_get__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../db/queries/get */ \"./src/server/db/queries/get.js\");\n\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0___default().Router();\nrouter.get(\"/:id?\", async (req, res, next) => {\n  try {\n    const {\n      id\n    } = req.params;\n    let data;\n\n    if (id) {\n      [data] = await (0,_db_queries_get__WEBPACK_IMPORTED_MODULE_1__.getOne)(\"employees\", id);\n    } else {\n      data = await (0,_db_queries_get__WEBPACK_IMPORTED_MODULE_1__.getAll)(\"employees\");\n    }\n\n    res.status(200).json(data || {\n      msg: \"No data available\"\n    });\n  } catch (error) {\n    next(error);\n  }\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);\n\n//# sourceURL=webpack://fullstack_starter/./src/server/routes/employeesRoutes.js?");
+
+/***/ }),
+
 /***/ "./src/server/routes/index.js":
 /*!************************************!*\
   !*** ./src/server/routes/index.js ***!
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0___default().Router();\nrouter.get(\"/test\", (req, res, next) => {\n  res.json({\n    msg: \"Hello World!\"\n  });\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);\n\n//# sourceURL=webpack://fullstack_starter/./src/server/routes/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _employeesRoutes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./employeesRoutes */ \"./src/server/routes/employeesRoutes.js\");\n/* harmony import */ var _productRoutes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./productRoutes */ \"./src/server/routes/productRoutes.js\");\n/* harmony import */ var _salesRoutes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./salesRoutes */ \"./src/server/routes/salesRoutes.js\");\n\n\n\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0___default().Router();\nrouter.get(\"/test\", (req, res, next) => {\n  res.json({\n    msg: \"Hello World!\"\n  });\n});\nrouter.use(\"/employees\", _employeesRoutes__WEBPACK_IMPORTED_MODULE_1__.default);\nrouter.use(\"/products\", _productRoutes__WEBPACK_IMPORTED_MODULE_2__.default);\nrouter.use(\"/sales\", _salesRoutes__WEBPACK_IMPORTED_MODULE_3__.default);\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);\n\n//# sourceURL=webpack://fullstack_starter/./src/server/routes/index.js?");
+
+/***/ }),
+
+/***/ "./src/server/routes/productRoutes.js":
+/*!********************************************!*\
+  !*** ./src/server/routes/productRoutes.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _db_queries_get__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../db/queries/get */ \"./src/server/db/queries/get.js\");\n\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0___default().Router();\nrouter.get(\"/:id?\", async (req, res, next) => {\n  try {\n    const {\n      id\n    } = req.params;\n    let data;\n\n    if (id) {\n      [data] = await (0,_db_queries_get__WEBPACK_IMPORTED_MODULE_1__.getOne)(\"products\", id);\n    } else {\n      data = await (0,_db_queries_get__WEBPACK_IMPORTED_MODULE_1__.getAll)(\"products\");\n    }\n\n    res.status(200).json(data || {\n      msg: \"No data available\"\n    });\n  } catch (error) {\n    next(error);\n  }\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);\n\n//# sourceURL=webpack://fullstack_starter/./src/server/routes/productRoutes.js?");
+
+/***/ }),
+
+/***/ "./src/server/routes/salesRoutes.js":
+/*!******************************************!*\
+  !*** ./src/server/routes/salesRoutes.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _db_queries_get__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../db/queries/get */ \"./src/server/db/queries/get.js\");\n\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0___default().Router();\nrouter.get(\"/:id?\", async (req, res, next) => {\n  try {\n    const {\n      id\n    } = req.params;\n    let data;\n\n    if (id) {\n      [data] = await (0,_db_queries_get__WEBPACK_IMPORTED_MODULE_1__.getOne)(\"sales\", id);\n      const {\n        sales,\n        id\n      } = req.body;\n    } else {\n      data = await (0,_db_queries_get__WEBPACK_IMPORTED_MODULE_1__.getAll)(\"sales\");\n    }\n\n    res.status(200).json(data || {\n      msg: \"No data available\"\n    });\n  } catch (error) {\n    next(error);\n  }\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);\n\n//# sourceURL=webpack://fullstack_starter/./src/server/routes/salesRoutes.js?");
 
 /***/ }),
 
@@ -36,7 +86,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! morgan */ \"morgan\");\n/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(morgan__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ \"./src/server/routes/index.js\");\n/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ \"./src/server/config/index.js\");\n\n\n\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()();\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().json());\napp.use(morgan__WEBPACK_IMPORTED_MODULE_1___default()(\"dev\"));\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().static(\"public\"));\napp.use(\"/api\", _routes__WEBPACK_IMPORTED_MODULE_2__.default);\napp.use((req, res, next) => {\n  try {\n    res.status(404).json(\"Not Found\");\n  } catch (error) {\n    next(error);\n  }\n});\napp.use((err, req, res, next) => {\n  console.log(err.message);\n  res.status(500).json({\n    msg: \"Something went wrong :(\"\n  });\n});\napp.listen(_config__WEBPACK_IMPORTED_MODULE_3__.default.port, () => console.log(`Server listening on port ${_config__WEBPACK_IMPORTED_MODULE_3__.default.port}...`));\n\n//# sourceURL=webpack://fullstack_starter/./src/server/server.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! morgan */ \"morgan\");\n/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(morgan__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ \"./src/server/routes/index.js\");\n/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ \"./src/server/config/index.js\");\n\n\n\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()();\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().json());\napp.use(morgan__WEBPACK_IMPORTED_MODULE_1___default()(\"dev\"));\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().static(\"public\"));\napp.use(\"/api/v1\", _routes__WEBPACK_IMPORTED_MODULE_2__.default);\napp.use((req, res, next) => {\n  try {\n    res.status(404).json(\"Not Found\");\n  } catch (error) {\n    next(error);\n  }\n});\napp.use((err, req, res, next) => {\n  console.log(err.message);\n  res.status(500).json({\n    error: err.message,\n    msg: \"Something went wrong :(\"\n  });\n});\napp.listen(_config__WEBPACK_IMPORTED_MODULE_3__.default.port, () => console.log(`Server listening on port ${_config__WEBPACK_IMPORTED_MODULE_3__.default.port}...`));\n\n//# sourceURL=webpack://fullstack_starter/./src/server/server.js?");
 
 /***/ }),
 
@@ -67,6 +117,16 @@ module.exports = require("express");;
 /***/ ((module) => {
 
 module.exports = require("morgan");;
+
+/***/ }),
+
+/***/ "mysql":
+/*!************************!*\
+  !*** external "mysql" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = require("mysql");;
 
 /***/ })
 
