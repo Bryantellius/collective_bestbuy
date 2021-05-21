@@ -1,12 +1,12 @@
 import React from "react";
 
 const Sales = () => {
-  const [test, setTest] = React.useState("");
+  const [sales, setSales] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("/api/test")
+    fetch("/api/v1/sales")
       .then((res) => res.json())
-      .then(({ msg }) => setTest(msg));
+      .then((data) => setSales(data));
   }, []);
 
   return (
@@ -24,7 +24,7 @@ const Sales = () => {
 </div>
 
 <div className="salesBody">
-    {test}
+    {sales.map((sale) => <p key= {sale.SaleID}> {sale.Quantity} </p> )}
 </div>
     </main>
   );
