@@ -4,7 +4,7 @@ const SalesInd = () => {
   const [test, setTest] = React.useState("");
 
   React.useEffect(() => {
-    fetch("/api/test")
+    fetch("/api/v1/test")
       .then((res) => res.json())
       .then(({ msg }) => setTest(msg));
   }, []);
