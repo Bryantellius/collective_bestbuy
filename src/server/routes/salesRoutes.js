@@ -1,7 +1,19 @@
 import express from "express";
-import { getAll, getOne } from "../db/queries/get";
+import { getAll, getOne, getSalesReport } from "../db/queries/get";
+
 
 const router = express.Router();
+
+router.get("/report", async (req, res, next) => {
+  try {
+    
+    let data = await getSalesReport();
+    
+    res.status(200).json(data || {msg: "No data available"});
+  }catch (error) {
+    next(error);
+  }
+});
 
 router.get("/:id?", async (req, res, next) => {
   try {
@@ -17,5 +29,7 @@ router.get("/:id?", async (req, res, next) => {
     next(error);
   }
 });
+
+
 
 export default router;
