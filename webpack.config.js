@@ -11,6 +11,7 @@ const serverConfig = {
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
+     
     ],
   },
   resolve: {
@@ -41,6 +42,14 @@ const clientConfig = {
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.svg$/,
+        use: ["svg-url-loader"]
+      },
+      {
+        test: /\.(png|jpe?g|jpg)$/,
+        use: ["resolve-url-loader"]
       },
     ],
   },
