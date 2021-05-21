@@ -22,3 +22,17 @@
     "DateOfBirth": "1971-10-01T05:00:00.000Z"
 }
 ```
+
+#### Sales Report
+
+- Array of objects for sale totals per products
+
+```
+{
+    "ProductID": number,
+    "Name": string,
+    "Price": decimal,
+    "Quantity": number,
+    "Gross": decimal
+}
+```
