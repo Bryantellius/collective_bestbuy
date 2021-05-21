@@ -1,7 +1,3 @@
-@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
-
-// Anything after this will be custom styling!
-
 body,
 html {
   min-height: 100vh;
@@ -11,44 +7,40 @@ html {
 }
 
 .navBar {
-  width:100% ;
-  display:flex;
+  width: 100%;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
-  
-  background-color:navy;
+
+  background-color: navy;
   padding-bottom: 1%;
   font-size: 120%;
 }
 
-.navLink{
-
+.navLink {
   color: yellow;
   font-family: fantasy;
-  
-  
-  }
+}
 
-  .title {
-    
-    display:flex;
-    justify-content: center;
-    flex-direction: column
-    
-  }
+.title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 
-  .homePage {
+.homePage {
+  display: flex;
+  justify-content: center;
+}
 
-    display:flex;
-    justify-content: center;
+.tagLine {
+  font-size: 20px;
+}
 
-  }
+.salesBody {
+  display: flex;
+}
 
-  .tagLine {
-    font-size: 20px;
-  }
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 
-  .salesBody {
-display:flex;
-
-  }
+// Anything after this will be custom styling!
