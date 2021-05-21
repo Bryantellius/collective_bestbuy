@@ -13,10 +13,9 @@ const Home = () => {
     <main className="container">
       <div className="homePage">
         <div className="title">
-          <h1>Best Buy</h1>
-          <h5 className="tagLine">"We're still a thing!</h5>
-          <hr />
           <img src="../assets/img/bestbuy.jpg" alt="Test" />
+         
+          <h5 className="tagLine">"We're still a thing!</h5>
         </div>
       </div>
     </main>

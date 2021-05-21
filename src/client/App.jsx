@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./views/Home";
 import Sales from "./views/Sales";
+import SalesReport from "./views/SalesReport"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "../../src/components/NavBar";
 
@@ -16,6 +17,9 @@ const App = () => {
         </Route>
         <Route exact path="/Sales">
           <Sales />
+        </Route>
+        <Route exact path="/SalesReport">
+          <SalesReport />
         </Route>
       </Switch>
     </Router>

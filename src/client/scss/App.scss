@@ -45,10 +45,20 @@ html {
   }
 
   .tagLine {
-    font-size: 20px;
+    font-size: 30px;
   }
 
   .salesBody {
 display:flex;
 
+  }
+
+  .salesBar {
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .salesReportLink {
+    display:flex;
+    flex-direction: column;
   }
