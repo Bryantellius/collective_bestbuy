@@ -9,4 +9,8 @@ const getOne = async (table, id) => {
   return Query(`SELECT * FROM ${table} WHERE ${idCol}ID = ?`, [id]);
 };
 
-export { getAll, getOne };
+const getSalesReport = async () => {
+  return Query("CALL spSalesReport()");
+}
+
+export { getAll, getOne, getSalesReport };
